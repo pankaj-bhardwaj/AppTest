@@ -8,14 +8,17 @@
 
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import CustomButton from '../common/CustomButton';
-import {colors} from '../Styles/commonStyles';
-import {randomColorGenerator} from '../Utils/CommonFunctions';
+import {colors} from '../styles/commonStyles';
+import {randomColorGenerator} from '../utils/CommonFunctions';
+import {textCapture} from '../redux/actions/TextCaptureActions';
+import CapturedText from '../common/CapturedText';
 
 const FirstScreen = ({navigation}) => {
+  const dispatch = useDispatch();
   const [bgColor, setBgColor] = useState(null);
-  const [inputText, setInputText] = useState('');
 
   const onNavigate = index => {
     if (index === 1) {
@@ -27,14 +30,18 @@ const FirstScreen = ({navigation}) => {
     }
   };
 
+  const onTextChange = text => {
+    dispatch(textCapture(text));
+  };
+
   return (
     <View style={[styles.container, {backgroundColor: bgColor}]}>
       <View style={styles.upperContainer}>
-        <View style={{flex: 1, paddingTop: 20}}>
-          <Text style={styles.dynamicTextStyle}>{inputText}</Text>
+        <View style={[styles.flexOne, styles.topPadding]}>
+          <CapturedText />
         </View>
 
-        <View style={{flex: 1}}>
+        <View style={styles.flexOne}>
           <Text style={styles.text}>First Screen</Text>
         </View>
       </View>
@@ -42,7 +49,7 @@ const FirstScreen = ({navigation}) => {
       <View style={styles.lowerContainer}>
         <View style={styles.inputTextView}>
           <TextInput
-            onChangeText={text => setInputText(text)}
+            onChangeText={onTextChange}
             placeholder={'Whats in your mind...'}
             placeholderTextColor={bgColor ? colors.white : colors.black}
           />
@@ -94,6 +101,12 @@ const styles = StyleSheet.create({
   },
   dynamicTextStyle: {
     fontSize: 20,
+  },
+  flexOne: {
+    flex: 1,
+  },
+  topPadding: {
+    paddingTop: 20,
   },
 });
 

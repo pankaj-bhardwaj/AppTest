@@ -10,8 +10,9 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
 import CustomButton from '../common/CustomButton';
-import {colors} from '../Styles/commonStyles';
-import {randomColorGenerator} from '../Utils/CommonFunctions';
+import {colors} from '../styles/commonStyles';
+import {randomColorGenerator} from '../utils/CommonFunctions';
+import CapturedText from '../common/CapturedText';
 
 const SecondScreen = ({navigation}) => {
   const [bgColor, setBgColor] = useState(colors.white);
@@ -29,7 +30,13 @@ const SecondScreen = ({navigation}) => {
   return (
     <View style={[styles.container, {backgroundColor: bgColor}]}>
       <View style={styles.upperContainer}>
-        <Text style={styles.text}>Second Screen</Text>
+        <View style={[styles.flexOne, styles.topPadding]}>
+          <CapturedText />
+        </View>
+
+        <View style={styles.flexOne}>
+          <Text style={styles.text}>Second Screen</Text>
+        </View>
       </View>
 
       <View style={styles.lowerContainer}>
@@ -71,6 +78,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25,
+  },
+  flexOne: {
+    flex: 1,
+  },
+  topPadding: {
+    paddingTop: 20,
   },
 });
 

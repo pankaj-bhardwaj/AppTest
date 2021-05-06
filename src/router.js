@@ -11,9 +11,9 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import FirstScreen from './Screens/FirstScreen';
-import SecondScreen from './Screens/SecondScreen';
-import ThirdScreen from './Screens/ThirdScreen';
+import FirstScreen from './screens/FirstScreen';
+import SecondScreen from './screens/SecondScreen';
+import ThirdScreen from './screens/ThirdScreen';
 
 const Stack = createStackNavigator();
 

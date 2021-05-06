@@ -1,0 +1,1 @@
+export default {UPDATE_INPUT_TEXT: 'UPDATE_INPUT_TEXT'};
