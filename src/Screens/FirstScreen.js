@@ -1,0 +1,100 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, TextInput} from 'react-native';
+
+import CustomButton from '../common/CustomButton';
+import {colors} from '../Styles/commonStyles';
+import {randomColorGenerator} from '../Utils/CommonFunctions';
+
+const FirstScreen = ({navigation}) => {
+  const [bgColor, setBgColor] = useState(null);
+  const [inputText, setInputText] = useState('');
+
+  const onNavigate = index => {
+    if (index === 1) {
+      setBgColor(randomColorGenerator());
+    } else if (index === 2) {
+      navigation.navigate('SecondScreen');
+    } else if (index === 3) {
+      navigation.navigate('ThirdScreen');
+    }
+  };
+
+  return (
+    <View style={[styles.container, {backgroundColor: bgColor}]}>
+      <View style={styles.upperContainer}>
+        <View style={{flex: 1, paddingTop: 20}}>
+          <Text style={styles.dynamicTextStyle}>{inputText}</Text>
+        </View>
+
+        <View style={{flex: 1}}>
+          <Text style={styles.text}>First Screen</Text>
+        </View>
+      </View>
+
+      <View style={styles.lowerContainer}>
+        <View style={styles.inputTextView}>
+          <TextInput
+            onChangeText={text => setInputText(text)}
+            placeholder={'Whats in your mind...'}
+            placeholderTextColor={bgColor ? colors.white : colors.black}
+          />
+        </View>
+        <CustomButton
+          customStyle={{backgroundColor: colors.black}}
+          textStyle={{color: colors.white}}
+          buttonText={'Press Me'}
+          onPress={() => onNavigate(1)}
+        />
+        <CustomButton
+          customStyle={{backgroundColor: colors.skyblue}}
+          textStyle={{color: colors.white}}
+          buttonText={'Press Me to go second screen'}
+          onPress={() => onNavigate(2)}
+        />
+        <CustomButton
+          customStyle={{backgroundColor: colors.slategray}}
+          textStyle={{color: colors.white}}
+          buttonText={'Press Me to go third screen'}
+          onPress={() => onNavigate(3)}
+        />
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical: 30,
+  },
+  upperContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  lowerContainer: {
+    paddingHorizontal: 20,
+  },
+  text: {
+    fontSize: 25,
+  },
+  inputTextView: {
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 50,
+    borderRadius: 5,
+  },
+  dynamicTextStyle: {
+    fontSize: 20,
+  },
+});
+
+export default FirstScreen;
