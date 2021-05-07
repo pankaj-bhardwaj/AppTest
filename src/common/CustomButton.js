@@ -34,7 +34,7 @@ const CustomButton = ({
 
 const styles = StyleSheet.create({
   container: {
-    height: width / 10,
+    height: width / 9,
     backgroundColor: 'red',
     borderRadius: 5,
     marginVertical: 5,

@@ -7,7 +7,7 @@
  */
 
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Platform} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import CustomButton from '../common/CustomButton';
@@ -15,6 +15,7 @@ import {colors} from '../styles/commonStyles';
 import {randomColorGenerator} from '../utils/CommonFunctions';
 import {textCapture} from '../redux/actions/TextCaptureActions';
 import CapturedText from '../common/CapturedText';
+import CustomSwipeButton from '../common/CustomSwipeButton';
 
 const FirstScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const FirstScreen = ({navigation}) => {
           buttonText={'Press Me to go third screen'}
           onPress={() => onNavigate(3)}
         />
+        <CustomSwipeButton bgColor={bgColor} />
       </View>
     </View>
   );
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
   },
   inputTextView: {
     borderWidth: 1,
-    padding: 10,
+    padding: Platform.OS === 'ios' ? 10 : 0,
     marginBottom: 50,
     borderRadius: 5,
   },
