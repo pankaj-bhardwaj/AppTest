@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux';
 
 const CapturedText = () => {
   const inputText = useSelector(state => state.capturedText.inputText);
-console.log("asd", inputText)
   return <Text style={styles.dynamicTextStyle}>{inputText}</Text>;
 };
 
