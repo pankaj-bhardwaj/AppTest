@@ -34,7 +34,7 @@ const CustomSwipeButton = ({bgColor = null}: CustomSwipeButtonProps) => {
       titleColor={colors.white}
       railBackgroundColor={bgColor || colors.black}
       containerStyles={styles.container}
-      thumbIconStyles={styles.thumbIcon}
+      thumbIconStyles={styles.radius}
       railStyles={styles.radius}
       railFillBorderColor={colors.black}
       railFillBackgroundColor={colors.black}
